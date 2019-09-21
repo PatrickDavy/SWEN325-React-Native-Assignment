@@ -18,7 +18,9 @@ export default class Main extends React.Component {
             .catch(error => this.setState({ errorMessage: error.message }));
     };
     render() {
-        const { currentUser } = this.state
+
+
+        const { currentUser } = this.state;
         return (
             <View style={styles.container}>
                 <Text>
@@ -30,13 +32,40 @@ export default class Main extends React.Component {
                         title="Sign Out"
                     />
                 </View>
+                <View>
+                    <Button
+                        onPress={() => this.props.navigation.navigate('Contact')}
+                        title={"Contact!"}
+                    />
+                </View>
+                <View>
+                <Button
+                    onPress={() => this.props.navigation.navigate('Account')}
+                    title={"Account!"}
+                />
             </View>
+            </View>
+
         )}
 }
+Main.navigationOptions = {
+    header: null,
+};
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    codeHighlightContainer: {
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        borderRadius: 3,
+        paddingHorizontal: 4,
+    },
+    navigationFilename: {
+        marginTop: 5,
+    },
+    codeHighlightText: {
+        color: 'rgba(96,100,109, 0.8)',
     }
 });

@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet, ImageBackground, Image, Dime
 import { firebaseAuth } from '../Environment/Config';
 
 export default class Login extends React.Component {
-    state = { email: '', password: '', errorMessage: null }
+    state = { email: '', password: '', errorMessage: null };
     handleLogin = () => {
         firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).then(() => this.props.navigation.navigate('Main'))
             .catch(error => this.setState({ errorMessage: error.message }));
