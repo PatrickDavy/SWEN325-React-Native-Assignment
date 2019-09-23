@@ -44,12 +44,6 @@ export default class AddItem extends Component {
                 >
                     <Text style={styles.buttonText}>Add</Text>
                 </TouchableHighlight>
-                <View>
-                <Button
-                    onPress={() => this.props.navigation.navigate('Account')}
-                    title={"Cunny"}
-                />
-                </View>
             </View>
         );
     }

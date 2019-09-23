@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class ItemComponent extends Component {
@@ -13,7 +13,12 @@ export default class ItemComponent extends Component {
                 {this.props.items.map((item, index) => {
                     return (
                         <View key={index}>
-                            <Text style={styles.itemtext}>{item.name}</Text>
+                            <Text style={styles.itemTitle}>{item.Title}</Text>
+                            <Image
+                                style={styles.itemImage}
+                                source={{uri: item.ImageURL}}
+                            />
+                            <Text style={styles.itemDescription}>{item.Type}</Text>
                         </View>
                     );
                 })}
@@ -28,9 +33,17 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-around'
     },
-    itemtext: {
+    itemTitle: {
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center'
+    },
+    itemDescription: {
+        fontSize: 16,
+        textAlign: 'center'
+    },
+    itemImage: {
+        width: 300,
+        height:300
     }
 });
