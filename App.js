@@ -11,6 +11,20 @@ import Login from './Screens/Login';
 import Main from './Screens/Main';
 import Icon from '@expo/vector-icons/Ionicons';
 
+/**
+ * - AppSwitchNavigator
+ *    - WelcomeScreen
+ *      - Login Button
+ *      - Sign Up Button
+ *    - AppDrawerNavigator
+ *          - Dashboard - DashboardStackNavigator(needed for header and to change the header based on the tab)
+ *            - DashboardTabNavigator
+ *              - Tab 1 - FeedStack
+ *              - Tab 2 - ProfileStack
+ *              - Tab 3 - SettingsStack
+ *            - Any files you don't want to be a part of the Tab Navigator can go here.
+ */
+
 class App extends Component {
     render() {
         return<AppContainer />;
@@ -38,7 +52,7 @@ const DashboardStackNavigator = createStackNavigator({
             headerLeft: (
                 <Icon
                     style={{ paddingLeft: 10 }}
-                    onPress={()=> navigation.openDrawer}
+                    onPress={()=> navigation.openDrawer()}
                     name="md-menu"
                     size={30}
                 />
@@ -48,16 +62,16 @@ const DashboardStackNavigator = createStackNavigator({
 });
 
 const AppDrawerNavigator = createDrawerNavigator({
-    Contact: { screen: DashboardStackNavigator}
+    Main: { screen: DashboardStackNavigator}
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
     Loading: { screen: Loading },
-    Contact: { screen: AppDrawerNavigator },
+    Main: { screen: AppDrawerNavigator },
     Account: Account,
     SignUp: SignUp,
     Login: Login,
-    Main: Main
+    Contact: Contact,
 },{
     initialRouteName: 'Loading',
     headerMode: 'none'

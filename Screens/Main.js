@@ -1,31 +1,56 @@
-import React from 'react'
-import { Alert, Platform, Image, View, Text, StyleSheet, Button } from 'react-native';
-import { firebaseAuth } from '../Environment/Config';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import { Button} from 'native-base'
+import ItemComponent from "../components/ItemComponent";
+import { YellowBox } from "react-native";
+import _ from 'lodash';
+import { firebaseApp } from "../Environment/Config";
+let itemsRef = firebaseApp.database().ref('/items');
 
-export default class Main extends React.Component {
+YellowBox.ignoreWarnings(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+    if (message.indexOf('Setting a timer') <= -1) {
+        _console.warn(message);
+    }
+};
+export default class Main extends Component {
+    dataState = {
+        items: []
+    };
+
     constructor(props) {
         super(props);
-        this.state = { currentUser: null, errorMessage: null }
+        this.userState = { currentUser: null, errorMessage: null };
     }
     componentDidMount() {
-        const { currentUser } = firebaseAuth;
-        this.setState({ currentUser })
+        // const { currentUser } = firebaseApp.auth();
+        // this.setState({ currentUser });
+        itemsRef.on('value', snapshot => {
+            let data = snapshot.val();
+            let items = Object.values(data);
+            this.setState({ items });
+        });
     }
     onPressButton = () => {
         console.log('PressButton');
-        firebaseAuth.signOut()
+        firebaseApp.auth().signOut()
             .then(() => this.props.navigation.navigate('Login'))
             .catch(error => this.setState({ errorMessage: error.message }));
     };
+
     render() {
-
-
-        const { currentUser } = this.state;
+        const { currentUser } = this.userState;
         return (
             <View style={styles.container}>
-                <Text>
-                    Hi {currentUser && currentUser.email}!
-                </Text>
+                {/*{this.dataState.items.length > 0 ? (*/}
+                {/*    <ItemComponent items={this.dataState.items} />*/}
+                {/*) : (*/}
+                {/*    <Text>No items</Text>*/}
+                {/*)}*/}
+                {/*<Text>*/}
+                {/*    Hi {currentUser && currentUser.email}!*/}
+                {/*</Text>*/}
                 <View>
                     <Button
                         onPress={this.onPressButton}
@@ -39,11 +64,11 @@ export default class Main extends React.Component {
                     />
                 </View>
                 <View>
-                <Button
-                    onPress={() => this.props.navigation.navigate('Account')}
-                    title={"Account!"}
-                />
-            </View>
+                    <Button
+                        onPress={() => this.props.navigation.navigate('Account')}
+                        title={"Account!"}
+                    />
+                </View>
             </View>
 
         )}

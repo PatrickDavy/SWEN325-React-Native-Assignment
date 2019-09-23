@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ImageBackground, Image, Dimensions, TouchableOpacity } from 'react-native';
-import { firebaseAuth } from '../Environment/Config';
+import { firebaseApp } from '../Environment/Config';
 
 export default class Login extends React.Component {
-    state = { email: '', password: '', errorMessage: null };
+    userState = { email: '', password: '', errorMessage: null };
     handleLogin = () => {
-        firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).then(() => this.props.navigation.navigate('Main'))
+        firebaseApp.auth().signInWithEmailAndPassword(this.userState.email, this.userState.password).then(() => this.props.navigation.navigate('Main'))
             .catch(error => this.setState({ errorMessage: error.message }));
     };
     render() {
@@ -18,23 +18,23 @@ export default class Login extends React.Component {
                                style={{ width: 100, height: 100 }} />
                     </View>
                     <Text style={styles.heading}>Login</Text>
-                    {this.state.errorMessage &&
+                    {this.userState.errorMessage &&
                     <Text style={{ color: 'red' }}>
-                        {this.state.errorMessage}
+                        {this.userState.errorMessage}
                     </Text>}
                     <TextInput
                         placeholder="Email"
                         autoCapitalize="none"
                         style={styles.textInput}
                         onChangeText={email => this.setState({ email })}
-                        value={this.state.email}/>
+                        value={this.userState.email}/>
                     <TextInput
                         secureTextEntry
                         placeholder="Password"
                         autoCapitalize="none"
                         style={styles.textInput}
                         onChangeText={password => this.setState({ password })}
-                        value={this.state.password}/>
+                        value={this.userState.password}/>
                     <TouchableOpacity onPress={this.handleLogin}>
                         <View style={styles.signupBtn}>
                             <Text style={styles.buttonText}>Log In</Text>

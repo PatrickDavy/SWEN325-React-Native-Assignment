@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, StyleSheet, ImageBackground, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Button} from 'react-native';
 import React from "react";
 
 export class Contact extends React.Component {
@@ -15,9 +15,6 @@ export class Contact extends React.Component {
                     title={"Main"}
                 />
             </View>
-
-
-
         );
     }
 }
