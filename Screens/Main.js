@@ -15,13 +15,13 @@ console.warn = message => {
     }
 };
 export default class Main extends Component {
-    dataState = {
+    state = {
         items: []
     };
 
     constructor(props) {
         super(props);
-        this.userState = { currentUser: null, errorMessage: null };
+        // this.state = { currentUser: null, errorMessage: null };
     }
     componentDidMount() {
         // const { currentUser } = firebaseApp.auth();
@@ -39,37 +39,20 @@ export default class Main extends Component {
             .catch(error => this.setState({ errorMessage: error.message }));
     };
 
+
+
     render() {
-        const { currentUser } = this.userState;
+        // const { currentUser } = this.state;
         return (
             <View style={styles.container}>
-                {/*{this.dataState.items.length > 0 ? (*/}
-                {/*    <ItemComponent items={this.dataState.items} />*/}
-                {/*) : (*/}
-                {/*    <Text>No items</Text>*/}
-                {/*)}*/}
-                {/*<Text>*/}
-                {/*    Hi {currentUser && currentUser.email}!*/}
-                {/*</Text>*/}
-                <View>
-                    <Button
-                        onPress={this.onPressButton}
-                        title="Sign Out"
-                    />
-                </View>
-                <View>
-                    <Button
-                        onPress={() => this.props.navigation.navigate('Contact')}
-                        title={"Contact!"}
-                    />
-                </View>
-                <View>
-                    <Button
-                        onPress={() => this.props.navigation.navigate('Account')}
-                        title={"Account!"}
-                    />
-                </View>
+                {this.state.items.length > 0 ? (
+                    <ItemComponent items={this.state.items} />
+                ) : (
+                    <Text>No items</Text>
+                )}
+
             </View>
+
 
         )}
 }

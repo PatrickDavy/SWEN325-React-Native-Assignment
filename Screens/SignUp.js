@@ -3,10 +3,10 @@ import { View, Text, TextInput, Button, StyleSheet, ImageBackground, Image, Dime
 import {firebaseApp} from "../Environment/Config";
 
 export default class SignUp extends React.Component {
-    userState = { email: '', password: '', errorMessage: null };
+    state = { email: '', password: '', errorMessage: null };
     handleSignUp = () => {
         console.log('handleSignUp');
-        firebaseApp.auth().createUserWithEmailAndPassword(this.userState.email,this.userState.password)
+        firebaseApp.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
             .then(() => this.props.navigation.navigate('Main'))
             .catch(error => this.setState({ errorMessage: error.message }));
     };
@@ -20,16 +20,16 @@ export default class SignUp extends React.Component {
                                style={{   width: 100, height: 100 }} />
                     </View>
                     <Text style={styles.heading}>Sign Up</Text>
-                    {this.userState.errorMessage &&
+                    {this.state.errorMessage &&
                     <Text style={{ color: 'red' }}>
-                        {this.userState.errorMessage}
+                        {this.state.errorMessage}
                     </Text>}
                     <TextInput
                         placeholder="Email"
                         autoCapitalize="none"
                         style={styles.textInput}
                         onChangeText={email => this.setState({ email })}
-                        value={this.userState.email}
+                        value={this.state.email}
                     />
                     <TextInput
                         secureTextEntry
@@ -37,7 +37,7 @@ export default class SignUp extends React.Component {
                         autoCapitalize="none"
                         style={styles.textInput}
                         onChangeText={password => this.setState({ password })}
-                        value={this.userState.password}
+                        value={this.state.password}
                     />
                     <TouchableOpacity onPress={this.handleSignUp}>
                         <View style={styles.signupBtn}>

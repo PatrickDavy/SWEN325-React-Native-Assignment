@@ -10,6 +10,7 @@ import SignUp from './Screens/SignUp';
 import Login from './Screens/Login';
 import Main from './Screens/Main';
 import Icon from '@expo/vector-icons/Ionicons';
+import AddItem from "./Screens/AddItem";
 
 /**
  * - AppSwitchNavigator
@@ -34,7 +35,7 @@ class App extends Component {
 const TabNavigator = createBottomTabNavigator({
     Main,
     Contact,
-    Account
+    AddItem
 },{
     navigationOptions: ({ navigation }) => {
         const {routeName} = navigation.state.routes[navigation.state.index]
@@ -72,6 +73,7 @@ const AppSwitchNavigator = createSwitchNavigator({
     SignUp: SignUp,
     Login: Login,
     Contact: Contact,
+    AddItem: AddItem,
 },{
     initialRouteName: 'Loading',
     headerMode: 'none'
