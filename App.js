@@ -28,6 +28,7 @@ import AddItem from "./Screens/AddItem";
 
 class App extends Component {
     render() {
+        console.disableYellowBox = true;
         return<AppContainer />;
     }
 }

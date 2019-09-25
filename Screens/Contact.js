@@ -15,14 +15,14 @@ export class Contact extends React.Component {
                 <Text>Contact!</Text>
                 <Button
                     onPress={() => this.props.navigation.navigate('Account')}
-                    title={"Account niqqa"}
+                    title={"Account"}
                 />
                 <Button
                     onPress={() => this.props.navigation.navigate('Main')}
                     title={"Main"}
                 />
                 <Button
-                    onPress={this.onPressButton()}
+                    onPress={() => this.onPressButton()}
                     title={"lgjfndsv"}
                 />
             </View>

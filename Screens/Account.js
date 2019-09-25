@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, Button, StyleSheet, ImageBackground, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Button} from 'react-native';
 
 export class Account extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export class Account extends React.Component {
                     <View>
                         <Button
                             onPress={() => this.props.navigation.navigate('Contact')}
-                            title={"Contact niqqa"}
+                            title={"Contact"}
                         />
                         <Button
                         onPress={() => this.props.navigation.navigate('Main')}

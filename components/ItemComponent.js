@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import AwesomeButton from "react-native-really-awesome-button";
 import PropTypes from 'prop-types';
+
+let num = 0;
 
 export default class ItemComponent extends Component {
     static propTypes = {
         items: PropTypes.array.isRequired
     };
+
+    printACunny(item) {
+        console.log(item);
+    }
 
     render() {
         return (
@@ -19,6 +26,7 @@ export default class ItemComponent extends Component {
                                 source={{uri: item.ImageURL}}
                             />
                             <Text style={styles.itemDescription}>{item.Type}</Text>
+                            <AwesomeButton width={null} stretch={true}>Purchase</AwesomeButton>
                         </View>
                     );
                 })}

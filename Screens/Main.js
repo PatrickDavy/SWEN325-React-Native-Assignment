@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
-import { Button} from 'native-base'
+import { StyleSheet, View, SafeAreaView, ScrollView} from 'react-native';
 import ItemComponent from "../components/ItemComponent";
+import { firebaseApp } from "../Environment/Config";
 import { YellowBox } from "react-native";
 import _ from 'lodash';
-import { firebaseApp } from "../Environment/Config";
 let itemsRef = firebaseApp.database().ref('/items');
 
 YellowBox.ignoreWarnings(['Setting a timer']);
@@ -14,6 +13,7 @@ console.warn = message => {
         _console.warn(message);
     }
 };
+
 export default class Main extends Component {
     state = {
         items: []
@@ -21,11 +21,8 @@ export default class Main extends Component {
 
     constructor(props) {
         super(props);
-        // this.state = { currentUser: null, errorMessage: null };
     }
     componentDidMount() {
-        // const { currentUser } = firebaseApp.auth();
-        // this.setState({ currentUser });
         itemsRef.on('value', snapshot => {
             let data = snapshot.val();
             let items = Object.values(data);
@@ -39,21 +36,15 @@ export default class Main extends Component {
             .catch(error => this.setState({ errorMessage: error.message }));
     };
 
-
-
     render() {
-        // const { currentUser } = this.state;
         return (
             <View style={styles.container}>
-                {this.state.items.length > 0 ? (
-                    <ItemComponent items={this.state.items} />
-                ) : (
-                    <Text>No items</Text>
-                )}
-
+                <SafeAreaView>
+                    <ScrollView>
+                            <ItemComponent items={this.state.items} />
+                    </ScrollView>
+                </SafeAreaView>
             </View>
-
-
         )}
 }
 Main.navigationOptions = {
@@ -77,3 +68,6 @@ const styles = StyleSheet.create({
         color: 'rgba(96,100,109, 0.8)',
     }
 });
+
+
+
