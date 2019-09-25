@@ -10,10 +10,6 @@ export default class ItemComponent extends Component {
         items: PropTypes.array.isRequired
     };
 
-    printACunny(item) {
-        console.log(item);
-    }
-
     render() {
         return (
             <View style={styles.itemsList}>
@@ -26,7 +22,7 @@ export default class ItemComponent extends Component {
                                 source={{uri: item.ImageURL}}
                             />
                             <Text style={styles.itemDescription}>{item.Type}</Text>
-                            <AwesomeButton width={null} stretch={true}>Purchase</AwesomeButton>
+                            <AwesomeButton width={null} stretch={true} progress={true}>Purchase</AwesomeButton>
                         </View>
                     );
                 })}
