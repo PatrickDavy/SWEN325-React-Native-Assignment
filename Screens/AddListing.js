@@ -5,49 +5,71 @@ import {
     TouchableHighlight,
     StyleSheet,
     TextInput,
-    AlertIOS
+    Alert,
+    SafeAreaView,
+    ScrollView
 } from 'react-native';
 
 import { firebaseApp } from '../Environment/Config';
-import {Button} from "react-native-web";
+this.state = { text: 'Useless Placeholder' };
 
-let addItem = item => {
+let addEntry = state => {
     firebaseApp.database().ref('/items').push({
-        name: item
+        Title: state.Title,
+        Colour: '',
+        Description: '',
+        ImageURL: '',
+        Price: '',
+        Size: '',
+        Type: ''
     });
 };
 
-export default class AddItem extends Component {
+export default class AddListing extends Component {
     state = {
-        name: ''
+        Title: '',
+        Colour: '',
+        Description: '',
+        ImageURL: '',
+        Price: '',
+        Size: '',
+        Type: ''
     };
 
-    handleChange = e => {
-        this.setState({
-            name: e.nativeEvent.text
-        });
-    };
     handleSubmit = (title, message) => {
-        addItem(this.state.name);
-        AlertIOS.alert('Item saved successfully', message);
+        addEntry( this.state );
+        Alert.alert('Item saved successfully', message);
     };
 
     render() {
         return (
             <View style={styles.main}>
-                <Text style={styles.title}>Add Item</Text>
-                <TextInput style={styles.itemInput} onChange={this.handleChange} />
-                <TouchableHighlight
-                    style={styles.button}
-                    underlayColor="white"
-                    onPress={this.handleSubmit}
-                >
-                    <Text style={styles.buttonText}>Add</Text>
-                </TouchableHighlight>
+                <SafeAreaView>
+                    <ScrollView>
+                        <TextInput
+                            style={styles.itemInput}
+                            onChangeText={(Title) => this.setState({Title})}
+                            placeholder={"Add Title"}
+                            value={this.state.Title}
+
+                        />
+
+                        <TouchableHighlight
+                            style={styles.button}
+                            underlayColor="white"
+                            onPress={this.handleSubmit}
+                        >
+                            <Text style={styles.buttonText}>Add</Text>
+                        </TouchableHighlight>
+                    </ScrollView>
+                </SafeAreaView>
             </View>
         );
     }
 }
+
+
+
 
 const styles = StyleSheet.create({
     main: {

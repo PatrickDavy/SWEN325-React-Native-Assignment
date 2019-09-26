@@ -3,15 +3,21 @@ import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
+import Icon from '@expo/vector-icons/Ionicons';
+
 import Loading from './Screens/Loading';
 import {Contact} from "./Screens/Contact";
 import {Account} from "./Screens/Account";
 import SignUp from './Screens/SignUp';
+import Admin from './Screens/Admin'
 import Login from './Screens/Login';
 import Main from './Screens/Main';
-import Icon from '@expo/vector-icons/Ionicons';
-import AddItem from "./Screens/AddItem";
-
+import AddListing from "./Screens/AddListing";
+import Cart from "./Screens/Cart";
+import RemoveListing from "./Screens/RemoveListing";
+import ConfirmPurchase from "./Screens/ConfirmPurchase";
+import ItemComponent from "./components/ItemComponent";
+console.disableYellowBox = true;
 /**
  * - AppSwitchNavigator
  *    - WelcomeScreen
@@ -36,7 +42,7 @@ class App extends Component {
 const TabNavigator = createBottomTabNavigator({
     Main,
     Contact,
-    AddItem
+    Account
 },{
     navigationOptions: ({ navigation }) => {
         const {routeName} = navigation.state.routes[navigation.state.index]
@@ -74,7 +80,12 @@ const AppSwitchNavigator = createSwitchNavigator({
     SignUp: SignUp,
     Login: Login,
     Contact: Contact,
-    AddItem: AddItem,
+    Cart: Cart,
+    AddListing: AddListing,
+    RemoveListing: RemoveListing,
+    ConfirmPurchase: ConfirmPurchase,
+    Admin: Admin,
+    ItemComponent: ItemComponent
 },{
     initialRouteName: 'Loading',
     headerMode: 'none'
@@ -82,3 +93,5 @@ const AppSwitchNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
 export default App;
+
+

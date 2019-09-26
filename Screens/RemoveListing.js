@@ -1,37 +1,62 @@
-import {View, Text, TextInput, ScrollView, SafeAreaView, TouchableHighlight, StyleSheet, AlertIOS} from 'react-native';
-import React, {Component} from "react";
-import {Alert} from "react-native";
+import React, { Component } from 'react';
+import {
+    View,
+    Text,
+    TouchableHighlight,
+    StyleSheet,
+    TextInput,
+    Alert,
+    SafeAreaView,
+    ScrollView
+} from 'react-native';
 
-export class Contact extends Component {
+import { firebaseApp } from '../Environment/Config';
+this.state = { text: 'Useless Placeholder' };
+
+let addEntry = state => {
+    firebaseApp.database().ref('/items').push({
+        Title: state.Title,
+        Colour: '',
+        Description: '',
+        ImageURL: '',
+        Price: '',
+        Size: '',
+        Type: ''
+    });
+};
+
+export default class RemoveListing extends Component {
+    state = {
+        Title: '',
+        Colour: '',
+        Description: '',
+        ImageURL: '',
+        Price: '',
+        Size: '',
+        Type: ''
+    };
 
     handleSubmit = (title, message) => {
-        Alert.alert('Thank you for messaging in! \n We will respond ASAP', message);
+        // addEntry( this.state );
+        Alert.alert('Item removed successfully', message);
     };
 
     render() {
         return (
-            <View>
-
+            <View style={styles.main}>
                 <SafeAreaView>
                     <ScrollView>
-                        <Text/>
-                        <Text/>
-                        <Text>Name ...</Text>
-                        <Text>Company Address ...</Text>
-                        <Text>Company Phone ...</Text>
-                        <Text/>
-                        <Text/>
-                        <Text/>
-                        <Text style={styles.title}>Send us a message</Text>
                         <TextInput
                             style={styles.itemInput}
-                            multiline={true}
-                            numberOfLines={5}
-                            placeholder={'Please include your email...'}
+                            onChangeText={(Title) => this.setState({Title})}
+                            placeholder={"Title name"}
+                            value={this.state.Title}
+
                         />
+
                         <TouchableHighlight
                             style={styles.button}
-                            underlayColor="grey"
+                            underlayColor="white"
                             onPress={this.handleSubmit}
                         >
                             <Text style={styles.buttonText}>Add</Text>
@@ -42,6 +67,9 @@ export class Contact extends Component {
         );
     }
 }
+
+
+
 
 const styles = StyleSheet.create({
     main: {
@@ -57,18 +85,14 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     itemInput: {
-        marginLeft: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlignVertical: "top",
-        width: '90%',
-        height: 250,
+        height: 50,
         padding: 4,
-        fontSize: 16,
+        marginRight: 5,
+        fontSize: 23,
         borderWidth: 1,
-        borderColor: 'grey',
+        borderColor: 'white',
         borderRadius: 8,
-        color: 'black'
+        color: 'white'
     },
     buttonText: {
         fontSize: 18,

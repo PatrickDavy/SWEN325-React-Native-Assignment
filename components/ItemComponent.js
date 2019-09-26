@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import AwesomeButton from "react-native-really-awesome-button";
 import PropTypes from 'prop-types';
-
-let num = 0;
+import Icon from '@expo/vector-icons/Ionicons';
 
 export default class ItemComponent extends Component {
+    num = 0;
+    constructor(props){
+        super(props);
+    }
+
     static propTypes = {
         items: PropTypes.array.isRequired
     };
+
+    addToCart(item) {
+        this.num += item.Price;
+        console.log("Price:" + this.num)
+    }
 
     render() {
         return (
@@ -22,7 +31,11 @@ export default class ItemComponent extends Component {
                                 source={{uri: item.ImageURL}}
                             />
                             <Text style={styles.itemDescription}>{item.Type}</Text>
-                            <AwesomeButton width={null} stretch={true} progress={true}>Purchase</AwesomeButton>
+                            <AwesomeButton progress={true} width={null} stretch={true} onPress={() => this.addToCart(item)}><Icon
+                                style={{ paddingLeft: 10 }}
+                                name="md-add-circle"
+                                size={30}
+                            /></AwesomeButton>
                         </View>
                     );
                 })}

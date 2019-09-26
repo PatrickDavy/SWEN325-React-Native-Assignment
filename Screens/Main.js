@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, SafeAreaView, ScrollView} from 'react-native';
+import { StyleSheet, View, SafeAreaView, ScrollView, Text} from 'react-native';
 import ItemComponent from "../components/ItemComponent";
 import { firebaseApp } from "../Environment/Config";
 import { YellowBox } from "react-native";
 import _ from 'lodash';
+import AwesomeButton from "react-native-really-awesome-button";
 let itemsRef = firebaseApp.database().ref('/items');
 
 YellowBox.ignoreWarnings(['Setting a timer']);
@@ -29,22 +30,18 @@ export default class Main extends Component {
             this.setState({ items });
         });
     }
-    onPressButton = () => {
-        console.log('PressButton');
-        firebaseApp.auth().signOut()
-            .then(() => this.props.navigation.navigate('Login'))
-            .catch(error => this.setState({ errorMessage: error.message }));
-    };
 
     render() {
         return (
-            <View style={styles.container}>
+        <View style={styles.container}>
                 <SafeAreaView>
                     <ScrollView>
-                            <ItemComponent items={this.state.items} />
+                        <ItemComponent items={this.state.items}/>
+
                     </ScrollView>
                 </SafeAreaView>
-            </View>
+            <AwesomeButton style={styles.confirmPurchase} width={null} stretch={true} onPress={() => this.props.navigation.navigate('Cart')}>Confirm Purchase</AwesomeButton>
+        </View>
         )}
 }
 Main.navigationOptions = {
@@ -66,8 +63,8 @@ const styles = StyleSheet.create({
     },
     codeHighlightText: {
         color: 'rgba(96,100,109, 0.8)',
+    },
+    confirmPurchase: {
+        bottom: 35
     }
 });
-
-
-
