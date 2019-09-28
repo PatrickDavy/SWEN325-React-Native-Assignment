@@ -13,7 +13,8 @@ export default class Loading extends React.Component {
                 <Text>Loading</Text>
                 <ActivityIndicator size="large" />
             </View>
-        )}
+        )
+    }
 }
 
 const styles = StyleSheet.create({

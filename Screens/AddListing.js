@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    TouchableHighlight,
-    StyleSheet,
-    TextInput,
-    Alert,
-    SafeAreaView,
-    ScrollView
-} from 'react-native';
-
+import { View, Text, Alert, ScrollView, StyleSheet } from 'react-native';
 import { firebaseApp } from '../Environment/Config';
-this.state = { text: 'Useless Placeholder' };
-
-let addEntry = state => {
-    firebaseApp.database().ref('/items').push({
-        Title: state.Title,
-        Colour: '',
-        Description: '',
-        ImageURL: '',
-        Price: '',
-        Size: '',
-        Type: ''
-    });
-};
-
+import AwesomeButton from "react-native-really-awesome-button";
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import { Kohana } from 'react-native-textinput-effects';
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class AddListing extends Component {
     state = {
         Title: '',
@@ -36,79 +18,145 @@ export default class AddListing extends Component {
         Type: ''
     };
 
+    addEntry() {
+        firebaseApp.database().ref('/items').push({
+            Title: this.state.Title,
+            Colour: this.state.Colour,
+            Description: this.state.Description,
+            ImageURL: this.state.ImageURL,
+            Price: this.state.Price,
+            Size: this.state.Size,
+            Type: this.state.Type
+        });
+    }
+
     handleSubmit = (title, message) => {
-        addEntry( this.state );
+        this.addEntry();
         Alert.alert('Item saved successfully', message);
     };
 
     render() {
         return (
-            <View style={styles.main}>
-                <SafeAreaView>
-                    <ScrollView>
-                        <TextInput
-                            style={styles.itemInput}
-                            onChangeText={(Title) => this.setState({Title})}
-                            placeholder={"Add Title"}
-                            value={this.state.Title}
+            <ScrollView
+                style={styles.container}
+                contentContainerStyle={styles.content}
+            >
+                <View style={[styles.card2, { backgroundColor: '#b792a6' }]}>
+                    <Text style={styles.title}>Add Listing</Text>
+                    <Kohana
+                        style={styles.input}
+                        label={'Title'}
+                        iconClass={MaterialIcon}
+                        iconName={'title'}
+                        iconColor={'#f4d29a'}
+                        labelStyle={{ marginTop: 8, color: '#91627b' }}
+                        inputStyle={{ color: '#91627b' }}
+                        useNativeDriver
+                        onChangeText={(Title) => { this.setState({Title})}}
+                        value={this.state.Title}
+                    />
+                    <Kohana
+                        style={styles.input}
+                        label={'Colour'}
+                        iconClass={Entypo}
+                        iconName={'colours'}
+                        iconColor={'#f4d29a'}
+                        labelStyle={{ color: '#91627b' }}
+                        inputStyle={{ color: '#91627b' }}
+                        useNativeDriver
+                        onChangeText={(Colour) => this.setState({Colour})}
+                        value={this.state.Colour}
+                    />
+                    <Kohana
+                        style={styles.input}
+                        label={'Description'}
+                        iconClass={MaterialCommunityIcons}
+                        iconName={'subtitles-outline'}
+                        iconColor={'#f4d29a'}
+                        labelStyle={{ color: '#91627b' }}
+                        inputStyle={{ color: '#91627b' }}
+                        useNativeDriver
+                        onChangeText={(Description) => this.setState({Description})}
+                        value={this.state.Description}
+                    />
+                    <Kohana
+                        style={styles.input}
+                        label={'Price'}
+                        iconClass={Ionicons}
+                        iconName={'md-pricetag'}
+                        iconColor={'#f4d29a'}
+                        labelStyle={{ color: '#91627b' }}
+                        inputStyle={{ color: '#91627b' }}
+                        useNativeDriver
+                        onChangeText={(Price) => this.setState({Price})}
+                        value={this.state.Price}
+                    />
+                    <Kohana
+                        style={styles.input}
+                        label={'Size'}
+                        iconClass={Entypo}
+                        iconName={'resize-100-'}
+                        iconColor={'#f4d29a'}
+                        labelStyle={{ color: '#91627b' }}
+                        inputStyle={{ color: '#91627b' }}
+                        useNativeDriver
+                        onChangeText={(Size) => this.setState({Size})}
+                        value={this.state.Size}
+                    />
+                    <Kohana
+                        style={styles.input}
+                        label={'Type'}
+                        iconClass={MaterialCommunityIcons}
+                        iconName={'tshirt-crew'}
+                        iconColor={'#f4d29a'}
+                        labelStyle={{ color: '#91627b' }}
+                        inputStyle={{ color: '#91627b' }}
+                        useNativeDriver
+                        onChangeText={(Type) => this.setState({Type})}
+                        value={this.state.Type}
+                    />
+                    <Kohana
+                        style={styles.input}
+                        label={'ImageURL'}
+                        iconClass={MaterialCommunityIcons}
+                        iconName={'file-image'}
+                        iconColor={'#f4d29a'}
+                        labelStyle={{ color: '#91627b' }}
+                        inputStyle={{ color: '#91627b' }}
+                        useNativeDriver
+                        onChangeText={(ImageURL) => this.setState({ImageURL})}
+                        value={this.state.ImageURL}
+                    />
+                </View>
+                <AwesomeButton width={null} stretch={true} onPress={() => this.handleSubmit()}>Submit</AwesomeButton>
 
-                        />
-
-                        <TouchableHighlight
-                            style={styles.button}
-                            underlayColor="white"
-                            onPress={this.handleSubmit}
-                        >
-                            <Text style={styles.buttonText}>Add</Text>
-                        </TouchableHighlight>
-                    </ScrollView>
-                </SafeAreaView>
-            </View>
+            </ScrollView>
         );
     }
 }
 
-
-
-
 const styles = StyleSheet.create({
-    main: {
+    container: {
         flex: 1,
-        padding: 30,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        backgroundColor: '#6565fc'
+        paddingTop: 24,
+        backgroundColor: 'white',
+    },
+    content: {
+        paddingBottom: 300,
+    },
+    card2: {
+        padding: 16,
+    },
+    input: {
+        backgroundColor: '#f9f5ed',
+        marginTop: 4,
     },
     title: {
-        marginBottom: 20,
-        fontSize: 25,
-        textAlign: 'center'
+        paddingBottom: 16,
+        textAlign: 'center',
+        color: '#404d5b',
+        fontSize: 20,
+        fontWeight: 'bold',
+        opacity: 0.8,
     },
-    itemInput: {
-        height: 50,
-        padding: 4,
-        marginRight: 5,
-        fontSize: 23,
-        borderWidth: 1,
-        borderColor: 'white',
-        borderRadius: 8,
-        color: 'white'
-    },
-    buttonText: {
-        fontSize: 18,
-        color: '#111',
-        alignSelf: 'center'
-    },
-    button: {
-        height: 45,
-        flexDirection: 'row',
-        backgroundColor: 'white',
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 8,
-        marginBottom: 10,
-        marginTop: 10,
-        alignSelf: 'stretch',
-        justifyContent: 'center'
-    }
 });

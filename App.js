@@ -4,12 +4,13 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import Icon from '@expo/vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import Loading from './Screens/Loading';
 import {Contact} from "./Screens/Contact";
 import {Account} from "./Screens/Account";
 import SignUp from './Screens/SignUp';
-import Admin from './Screens/Admin'
+import Admin from './Screens/Admin';
 import Login from './Screens/Login';
 import Main from './Screens/Main';
 import AddListing from "./Screens/AddListing";
@@ -17,6 +18,9 @@ import Cart from "./Screens/Cart";
 import RemoveListing from "./Screens/RemoveListing";
 import ConfirmPurchase from "./Screens/ConfirmPurchase";
 import ItemComponent from "./components/ItemComponent";
+import AddSubscription from "./Screens/AddSubscription";
+import AddSubscriptionView from "./components/AddSubscriptionView";
+import PaymentFormView from "./components/PaymentFormView";
 console.disableYellowBox = true;
 /**
  * - AppSwitchNavigator
@@ -40,17 +44,47 @@ class App extends Component {
 }
 
 const TabNavigator = createBottomTabNavigator({
-    Main,
-    Contact,
-    Account
-},{
-    navigationOptions: ({ navigation }) => {
-        const {routeName} = navigation.state.routes[navigation.state.index]
-        return {
-            headerTitle: routeName
-        }
-    }
-});
+        Main: {
+            screen: Main,
+
+            navigationOptions: {
+                tabBarLabel:"Home",
+                tabBarIcon: ({ tintColor }) => (
+                    <FontAwesome name="home" size={30} color="#900" />
+                )
+            },
+        },
+        Contact: {
+            screen: Contact,
+            navigationOptions: {
+                tabBarLabel:"Contact",
+                tabBarIcon: ({ tintColor }) => (
+                    <FontAwesome name="users" size={30} color="#900" />
+                )
+            }
+        },
+        Account: {
+            screen: Account,
+            navigationOptions: {
+                tabBarLabel:"Account",
+                tabBarIcon: ({ tintColor }) => (
+                    <FontAwesome name="user" size={30} color="#900" />
+                )
+            }
+        },
+    },
+
+    {
+        order: ['Main', 'Contact', 'Account'],
+        tabBarOptions: {
+            activeTintColor: '#D4AF37',
+            inactiveTintColor: 'gray',
+            style: {
+                backgroundColor: 'white',
+            }
+        },
+    },
+);
 
 const DashboardStackNavigator = createStackNavigator({
     TabNavigator: TabNavigator
@@ -66,11 +100,14 @@ const DashboardStackNavigator = createStackNavigator({
                 />
             )
         };
+
+
     }
 });
 
 const AppDrawerNavigator = createDrawerNavigator({
-    Main: { screen: DashboardStackNavigator}
+    Back: { screen: DashboardStackNavigator},
+    Main, Account, Contact, Admin
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
@@ -85,7 +122,10 @@ const AppSwitchNavigator = createSwitchNavigator({
     RemoveListing: RemoveListing,
     ConfirmPurchase: ConfirmPurchase,
     Admin: Admin,
-    ItemComponent: ItemComponent
+    ItemComponent: ItemComponent,
+    AddSubscription: AddSubscription,
+    AddSubscriptionView: AddSubscriptionView,
+    PaymentFormView: PaymentFormView,
 },{
     initialRouteName: 'Loading',
     headerMode: 'none'
@@ -93,5 +133,3 @@ const AppSwitchNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
 export default App;
-
-

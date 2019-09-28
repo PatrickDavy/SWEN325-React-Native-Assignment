@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, SafeAreaView, ScrollView, Text} from 'react-native';
+import { StyleSheet, View, SafeAreaView, ScrollView} from 'react-native';
 import ItemComponent from "../components/ItemComponent";
 import { firebaseApp } from "../Environment/Config";
 import { YellowBox } from "react-native";
@@ -11,7 +11,7 @@ YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);
 console.warn = message => {
     if (message.indexOf('Setting a timer') <= -1) {
-        _console.warn(message);
+        _console.warn(message+ " ");
     }
 };
 
@@ -33,16 +33,17 @@ export default class Main extends Component {
 
     render() {
         return (
-        <View style={styles.container}>
+            <View style={styles.container}>
                 <SafeAreaView>
                     <ScrollView>
                         <ItemComponent items={this.state.items}/>
 
                     </ScrollView>
                 </SafeAreaView>
-            <AwesomeButton style={styles.confirmPurchase} width={null} stretch={true} onPress={() => this.props.navigation.navigate('Cart')}>Confirm Purchase</AwesomeButton>
-        </View>
-        )}
+                <AwesomeButton style={styles.confirmPurchase} width={null} stretch={true} onPress={() => this.props.navigation.navigate('AddSubscription')}>Confirm Purchase</AwesomeButton>
+            </View>
+        )
+    }
 }
 Main.navigationOptions = {
     header: null,

@@ -7,16 +7,15 @@ export default class Cart extends Component{
     render() {
         return (
             <View style={styles.container}>
-                <Text>Pee pee Vagina</Text>
+
                 <AwesomeButton width={null} stretch={true}
-                               onPress={() => this.props.navigation.navigate('ConfirmPurchase')}>
+                               onPress={() => this.props.navigation.navigate('AddSubscription')}>
                     Confirm
                 </AwesomeButton>
             </View>
         )
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
