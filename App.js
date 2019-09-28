@@ -16,12 +16,10 @@ import Main from './Screens/Main';
 import AddListing from "./Screens/AddListing";
 import Cart from "./Screens/Cart";
 import RemoveListing from "./Screens/RemoveListing";
-import ConfirmPurchase from "./Screens/ConfirmPurchase";
 import ItemComponent from "./components/ItemComponent";
 import AddSubscription from "./Screens/AddSubscription";
 import AddSubscriptionView from "./components/AddSubscriptionView";
 import PaymentFormView from "./components/PaymentFormView";
-console.disableYellowBox = true;
 /**
  * - AppSwitchNavigator
  *    - WelcomeScreen
@@ -120,7 +118,6 @@ const AppSwitchNavigator = createSwitchNavigator({
     Cart: Cart,
     AddListing: AddListing,
     RemoveListing: RemoveListing,
-    ConfirmPurchase: ConfirmPurchase,
     Admin: Admin,
     ItemComponent: ItemComponent,
     AddSubscription: AddSubscription,

@@ -9,13 +9,13 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class AddListing extends Component {
     state = {
-        Title: '',
-        Colour: '',
-        Description: '',
-        ImageURL: '',
-        Price: '',
-        Size: '',
-        Type: ''
+        Title: ' ',
+        Colour: ' ',
+        Description: ' ',
+        ImageURL: ' ',
+        Price: ' ',
+        Size: ' ',
+        Type: ' '
     };
 
     addEntry() {

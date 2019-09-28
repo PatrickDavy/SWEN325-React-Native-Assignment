@@ -11,7 +11,6 @@ export class Contact extends Component {
     render() {
         return (
             <View>
-
                 <SafeAreaView>
                     <ScrollView>
                         <Text/>

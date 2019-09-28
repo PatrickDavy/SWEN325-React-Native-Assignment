@@ -6,6 +6,7 @@ import { YellowBox } from "react-native";
 import _ from 'lodash';
 import AwesomeButton from "react-native-really-awesome-button";
 let itemsRef = firebaseApp.database().ref('/items');
+console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
 
 YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);

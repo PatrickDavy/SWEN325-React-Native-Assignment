@@ -14,6 +14,10 @@ import Icon from '@expo/vector-icons/Ionicons';
 
 export default class RemoveListing extends Component {
 
+    state = {
+        Title: ' ',
+    };
+
     deleteEntry(){
     firebaseApp.database().ref().child('/items').on('value', (snapshot) => {
         snapshot.forEach((child) => {
@@ -28,13 +32,6 @@ export default class RemoveListing extends Component {
             }
         });
     });
-    };
-
-    state = {
-        Title: '',
-    };
-    handleSubmit() {
-        this.deleteEntry();
     };
 
     render() {
@@ -57,7 +54,7 @@ export default class RemoveListing extends Component {
                         onChangeText={(Title) => { this.setState({Title})}}
                         value={this.state.Title}
                     />
-                    <AwesomeButton width={null} stretch={true} onPress={() => this.handleSubmit()}><Icon
+                    <AwesomeButton width={null} stretch={true} onPress={() => this.deleteEntry()}><Icon
                         style={{ paddingLeft: 10 }}
                         name="md-remove-circle"
                         size={30}
