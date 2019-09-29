@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, SafeAreaView, ScrollView} from 'react-native';
-import ItemComponent from "../components/ItemComponent";
-import { firebaseApp } from "../Environment/Config";
+import ItemComponent from "./Component/ItemComponent";
+import { firebaseApp } from "../../Environment/Config";
 import { YellowBox } from "react-native";
 import _ from 'lodash';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";

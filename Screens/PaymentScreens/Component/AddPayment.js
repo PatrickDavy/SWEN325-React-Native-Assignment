@@ -1,7 +1,7 @@
 import React from 'react';
-import AddSubscriptionView from '../components/AddSubscriptionView';
+import AddPaymentView from '../AddPaymentView';
 
-const STRIPE_ERROR = 'Payment service error. Try again later.';
+const STRIPE_ERROR = 'PaymentScreens service error. Try again later.';
 const SERVER_ERROR = 'Server error. Try again later.';
 const STRIPE_PUBLISHABLE_KEY = 'pk_test_PVd1a6nDJuEH9l1rquxYTCFN00YzWitcUc';
 
@@ -60,7 +60,7 @@ const subscribeUser = (creditCardToken) => {
  * The main class that submits the credit card data and
  * handles the response from Stripe.
  */
-export default class AddSubscription extends React.Component {
+export default class AddPayment extends React.Component {
     static navigationOptions = {
         title: 'Subscription page',
     };
@@ -109,7 +109,7 @@ export default class AddSubscription extends React.Component {
     render() {
         const { submitted, error } = this.state;
         return (
-            <AddSubscriptionView
+            <AddPaymentView
                 error={error}
                 submitted={submitted}
                 onSubmit={this.onSubmit}

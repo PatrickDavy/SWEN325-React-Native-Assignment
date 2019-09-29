@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import AddListing from "./AddListing";
 import RemoveListing from "./RemoveListing";
-import {firebaseApp} from "../Environment/Config";
+import {firebaseApp} from "../../Environment/Config";
 export default class Admin extends Component {
     render() {
         return (

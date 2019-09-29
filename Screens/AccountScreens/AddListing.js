@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Alert, ScrollView, StyleSheet } from 'react-native';
-import { firebaseApp } from '../Environment/Config';
+import { firebaseApp } from '../../Environment/Config';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';

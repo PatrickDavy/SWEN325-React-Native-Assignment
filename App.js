@@ -4,20 +4,19 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import Loading from './Screens/Loading';
-import {Contact} from "./Screens/Contact";
-import {Account} from "./Screens/Account";
-import SignUp from './Screens/SignUp';
-import Admin from './Screens/Admin';
-import Login from './Screens/Login';
-import Main from './Screens/Main';
-import AddListing from "./Screens/AddListing";
-import Cart from "./Screens/Cart";
-import RemoveListing from "./Screens/RemoveListing";
-import ItemComponent from "./components/ItemComponent";
-import AddSubscription from "./Screens/AddSubscription";
-import AddSubscriptionView from "./components/AddSubscriptionView";
-import PaymentFormView from "./components/PaymentFormView";
+import Loading from './Screens/LoginScreens/Loading';
+import {Contact} from "./Screens/ContactScreens/Contact";
+import {Account} from "./Screens/AccountScreens/Account";
+import SignUp from './Screens/LoginScreens/SignUp';
+import Admin from './Screens/AccountScreens/Admin';
+import Login from './Screens/LoginScreens/Login';
+import Main from './Screens/MainScreens/Main';
+import AddListing from "./Screens/AccountScreens/AddListing";
+import RemoveListing from "./Screens/AccountScreens/RemoveListing";
+import ItemComponent from "./Screens/MainScreens/Component/ItemComponent";
+import AddPayment from "./Screens/PaymentScreens/Component/AddPayment";
+import AddPaymentView from "./Screens/PaymentScreens/AddPaymentView";
+import PaymentFormView from "./Screens/PaymentScreens/Component/PaymentFormView";
 /**
  * - AppSwitchNavigator
  *    - WelcomeScreen
@@ -100,13 +99,12 @@ const AppSwitchNavigator = createSwitchNavigator({
     SignUp: SignUp,
     Login: Login,
     Contact: Contact,
-    Cart: Cart,
     AddListing: AddListing,
     RemoveListing: RemoveListing,
     Admin: Admin,
-    AddSubscriptionView: AddSubscriptionView,
+    AddSubscriptionView: AddPaymentView,
     ItemComponent: ItemComponent,
-    AddSubscription: AddSubscription,
+    AddSubscription: AddPayment,
     PaymentFormView: PaymentFormView,
 },{
     initialRouteName: 'Loading',

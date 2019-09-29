@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Kohana } from 'react-native-textinput-effects';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { firebaseApp } from '../Environment/Config';
+import { firebaseApp } from '../../Environment/Config';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import Icon from '@expo/vector-icons/Ionicons';
 

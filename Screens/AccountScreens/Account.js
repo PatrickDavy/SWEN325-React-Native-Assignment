@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, View, ScrollView, Text} from 'react-native';
-import { firebaseApp } from "../Environment/Config";
+import { firebaseApp } from "../../Environment/Config";
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 
 export class Account extends React.Component {
