@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ImageBackground, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { firebaseApp } from '../Environment/Config';
 
 export default class Login extends React.Component {
@@ -10,8 +10,6 @@ export default class Login extends React.Component {
     };
     render() {
         return (
-            <ImageBackground source={require('../Images/bgImg.png')}
-                             style={{ width: '100%', height: '100%' }}>
                 <View style={styles.container}>
                     <View style={styles.headingSection}>
                         <Image source={require('../Images/userImg.png')}
@@ -40,17 +38,23 @@ export default class Login extends React.Component {
                             <Text style={styles.buttonText}>Log In</Text>
                         </View>
                     </TouchableOpacity>
+                    <View style={styles.switch}>
                     <Button
-                        title="Don't have an account? Sign Up" color="transparent"
+
+                        title="Don't have an account? Sign Up"
                         onPress={() => this.props.navigation.navigate('SignUp')}
                     />
+                    </View>
                 </View>
-            </ImageBackground>
         )}
 }
 const heightConst = Dimensions.get('screen').height;
 const styles = StyleSheet.create({
+    switch:{
+        paddingTop:20
+    },
     container: {
+        backgroundColor: '#5aa8d8',
         height: heightConst - 50,
         justifyContent: 'center',
         alignItems: 'center'
@@ -89,5 +93,9 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#fff',
-        textAlign: 'center'}
+        textAlign: 'center'
+    },
+    background:{
+        backgroundColor: '#dcddd8'
+    }
 });

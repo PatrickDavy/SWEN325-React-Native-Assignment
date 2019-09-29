@@ -9,7 +9,7 @@ import {
 import { Kohana } from 'react-native-textinput-effects';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { firebaseApp } from '../Environment/Config';
-import AwesomeButton from "react-native-really-awesome-button";
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import Icon from '@expo/vector-icons/Ionicons';
 
 export default class RemoveListing extends Component {
@@ -27,7 +27,7 @@ export default class RemoveListing extends Component {
                     Alert.alert('Success', 'Item removed successfully');
                     firebaseApp.database().ref().child('/items/' + child.key).remove().then(this.props.navigation.navigate('Main'));
                 } else {
-                    Alert.alert('Error', 'Please a name to be removed');
+                    Alert.alert('Error', 'Please enter a name to be removed');
                 }
             }
         });
@@ -40,26 +40,30 @@ export default class RemoveListing extends Component {
                 style={styles.container}
                 contentContainerStyle={styles.content}
             >
-                <View style={[styles.card2, { backgroundColor: '#b792a6' }]}>
+                <View style={ styles.card2 }>
                     <Text style={styles.title}>Remove Listing</Text>
                     <Kohana
                         style={styles.input}
                         label={'Title'}
                         iconClass={AntDesign}
                         iconName={'delete'}
-                        iconColor={'#f4d29a'}
-                        labelStyle={{ marginTop: 8, color: '#91627b' }}
-                        inputStyle={{ color: '#91627b' }}
+                        iconColor={'#5aa8d8'}
+                        labelStyle={{ marginTop: 8, color: '#5aa8d8' }}
+                        inputStyle={{ color: '#5aa8d8' }}
                         useNativeDriver
                         onChangeText={(Title) => { this.setState({Title})}}
                         value={this.state.Title}
                     />
+                    <View style={styles.submitButton}>
                     <AwesomeButton width={null} stretch={true} onPress={() => this.deleteEntry()}><Icon
-                        style={{ paddingLeft: 10 }}
+                        style={{paddingLeft: 10}}
                         name="md-remove-circle"
                         size={30}
                     /></AwesomeButton>
-                    <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Main')}>Main Page</AwesomeButton>
+                    </View>
+                    <View style={styles.mainButton}>
+                        <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Main')}>Main Page</AwesomeButton>
+                    </View>
                 </View>
             </ScrollView>
         );
@@ -67,12 +71,14 @@ export default class RemoveListing extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 24,
-        backgroundColor: 'white',
+    submitButton:{
+        paddingTop:30,
+    },
+    mainButton:{
+        paddingTop: 100
     },
     content: {
+        backgroundColor: '#dcddd8',//white dcddd8/ blue/5aa8d8
         paddingBottom: 300,
     },
     card2: {
@@ -82,6 +88,7 @@ const styles = StyleSheet.create({
         marginTop: 4,
     },
     title: {
+        paddingTop:60,
         paddingBottom: 16,
         textAlign: 'center',
         color: '#404d5b',
@@ -89,38 +96,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         opacity: 0.8,
     },
-    main: {
-        flex: 1,
-        padding: 30,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        backgroundColor: '#6565fc'
-    },
-    itemInput: {
-        height: 50,
-        padding: 4,
-        marginRight: 5,
-        fontSize: 23,
-        borderWidth: 1,
-        borderColor: 'white',
-        borderRadius: 8,
-        color: 'white'
-    },
-    buttonText: {
-        fontSize: 18,
-        color: '#111',
-        alignSelf: 'center'
-    },
-    button: {
-        height: 45,
-        flexDirection: 'row',
-        backgroundColor: 'white',
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 8,
-        marginBottom: 10,
-        marginTop: 10,
-        alignSelf: 'stretch',
-        justifyContent: 'center'
-    }
 });

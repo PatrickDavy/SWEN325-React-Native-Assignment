@@ -12,8 +12,6 @@ export default class SignUp extends React.Component {
     };
     render() {
         return (
-            <ImageBackground source={require('../Images/bgImg.png')}
-                             style={{ width: '100%', height: '100%' }}>
                 <View style={styles.container}>
                     <View style={styles.headingSection}>
                         <Image source={require('../Images/userImg.png')}
@@ -44,18 +42,20 @@ export default class SignUp extends React.Component {
                             <Text style={styles.buttonText}>Sign Up</Text>
                         </View>
                     </TouchableOpacity>
-                    <Button color="transparent"
-                            title="Already have an account? Login "
-                            onPress={() => this.props.navigation.navigate('Login')}
-                    />
+                    <View style={styles.switch}>
+                    <Button title="Already have an account? Login " onPress={() => this.props.navigation.navigate('Login')}/>
+                    </View>
                 </View>
-            </ImageBackground>
         )
     }
 }
 const heightConst = Dimensions.get('screen').height;
 const styles = StyleSheet.create({
+    switch:{
+        paddingTop:20
+    },
     container: {
+        backgroundColor: '#5aa8d8',
         height: heightConst - 50,
         justifyContent: 'center',
         alignItems: 'center'
@@ -95,5 +95,8 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#fff',
         textAlign: 'center'
+    },
+    background:{
+        backgroundColor: '#dcddd8'
     }
 });

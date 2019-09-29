@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Alert, ScrollView, StyleSheet } from 'react-native';
 import { firebaseApp } from '../Environment/Config';
-import AwesomeButton from "react-native-really-awesome-button";
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { Kohana } from 'react-native-textinput-effects';
@@ -37,20 +37,17 @@ export default class AddListing extends Component {
 
     render() {
         return (
-            <ScrollView
-                style={styles.container}
-                contentContainerStyle={styles.content}
-            >
-                <View style={[styles.card2, { backgroundColor: '#b792a6' }]}>
+            <ScrollView style={styles.content}>
+                <View style={styles.card2}>
                     <Text style={styles.title}>Add Listing</Text>
                     <Kohana
                         style={styles.input}
                         label={'Title'}
                         iconClass={MaterialIcon}
                         iconName={'title'}
-                        iconColor={'#f4d29a'}
-                        labelStyle={{ marginTop: 8, color: '#91627b' }}
-                        inputStyle={{ color: '#91627b' }}
+                        iconColor={'#5aa8d8'}
+                        labelStyle={{ marginTop: 8, color: '#5aa8d8' }}
+                        inputStyle={{ color: '#5aa8d8' }}
                         useNativeDriver
                         onChangeText={(Title) => { this.setState({Title})}}
                         value={this.state.Title}
@@ -60,9 +57,9 @@ export default class AddListing extends Component {
                         label={'Colour'}
                         iconClass={Entypo}
                         iconName={'colours'}
-                        iconColor={'#f4d29a'}
-                        labelStyle={{ color: '#91627b' }}
-                        inputStyle={{ color: '#91627b' }}
+                        iconColor={'#5aa8d8'}
+                        labelStyle={{ color: '#5aa8d8' }}
+                        inputStyle={{ color: '#5aa8d8' }}
                         useNativeDriver
                         onChangeText={(Colour) => this.setState({Colour})}
                         value={this.state.Colour}
@@ -72,9 +69,9 @@ export default class AddListing extends Component {
                         label={'Description'}
                         iconClass={MaterialCommunityIcons}
                         iconName={'subtitles-outline'}
-                        iconColor={'#f4d29a'}
-                        labelStyle={{ color: '#91627b' }}
-                        inputStyle={{ color: '#91627b' }}
+                        iconColor={'#5aa8d8'}
+                        labelStyle={{ color: '#5aa8d8' }}
+                        inputStyle={{ color: '#5aa8d8' }}
                         useNativeDriver
                         onChangeText={(Description) => this.setState({Description})}
                         value={this.state.Description}
@@ -84,9 +81,9 @@ export default class AddListing extends Component {
                         label={'Price'}
                         iconClass={Ionicons}
                         iconName={'md-pricetag'}
-                        iconColor={'#f4d29a'}
-                        labelStyle={{ color: '#91627b' }}
-                        inputStyle={{ color: '#91627b' }}
+                        iconColor={'#5aa8d8'}
+                        labelStyle={{ color: '#5aa8d8' }}
+                        inputStyle={{ color: '#5aa8d8' }}
                         useNativeDriver
                         onChangeText={(Price) => this.setState({Price})}
                         value={this.state.Price}
@@ -96,9 +93,9 @@ export default class AddListing extends Component {
                         label={'Size'}
                         iconClass={Entypo}
                         iconName={'resize-100-'}
-                        iconColor={'#f4d29a'}
-                        labelStyle={{ color: '#91627b' }}
-                        inputStyle={{ color: '#91627b' }}
+                        iconColor={'#5aa8d8'}
+                        labelStyle={{ color: '#5aa8d8' }}
+                        inputStyle={{ color: '#5aa8d8' }}
                         useNativeDriver
                         onChangeText={(Size) => this.setState({Size})}
                         value={this.state.Size}
@@ -108,9 +105,9 @@ export default class AddListing extends Component {
                         label={'Type'}
                         iconClass={MaterialCommunityIcons}
                         iconName={'tshirt-crew'}
-                        iconColor={'#f4d29a'}
-                        labelStyle={{ color: '#91627b' }}
-                        inputStyle={{ color: '#91627b' }}
+                        iconColor={'#5aa8d8'}
+                        labelStyle={{ color: '#5aa8d8' }}
+                        inputStyle={{ color: '#5aa8d8' }}
                         useNativeDriver
                         onChangeText={(Type) => this.setState({Type})}
                         value={this.state.Type}
@@ -120,38 +117,39 @@ export default class AddListing extends Component {
                         label={'ImageURL'}
                         iconClass={MaterialCommunityIcons}
                         iconName={'file-image'}
-                        iconColor={'#f4d29a'}
-                        labelStyle={{ color: '#91627b' }}
-                        inputStyle={{ color: '#91627b' }}
+                        iconColor={'#5aa8d8'}
+                        labelStyle={{ color: '#5aa8d8' }}
+                        inputStyle={{ color: '#5aa8d8' }}
                         useNativeDriver
                         onChangeText={(ImageURL) => this.setState({ImageURL})}
                         value={this.state.ImageURL}
                     />
                 </View>
                 <AwesomeButton width={null} stretch={true} onPress={() => this.handleSubmit()}>Submit</AwesomeButton>
-
-            </ScrollView>
+                <View style={styles.mainButton}>
+                <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Main')}>Main Page</AwesomeButton>
+                </View>
+                </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 24,
-        backgroundColor: 'white',
+    mainButton:{
+        paddingTop: 30
     },
     content: {
+        backgroundColor: '#dcddd8',//white dcddd8/ blue/5aa8d8
         paddingBottom: 300,
     },
     card2: {
         padding: 16,
     },
     input: {
-        backgroundColor: '#f9f5ed',
         marginTop: 4,
     },
     title: {
+        paddingTop:60,
         paddingBottom: 16,
         textAlign: 'center',
         color: '#404d5b',

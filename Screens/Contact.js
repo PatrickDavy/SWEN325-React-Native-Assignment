@@ -1,23 +1,33 @@
-import {View, Text, TextInput, ScrollView, SafeAreaView, TouchableHighlight, StyleSheet, AlertIOS} from 'react-native';
+import {View, Text, TextInput, ScrollView, StyleSheet} from 'react-native';
 import React, {Component} from "react";
 import {Alert} from "react-native";
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 
 export class Contact extends Component {
+    state = {
+        text: ''
+    };
 
     handleSubmit = (title, message) => {
+        if(this.state.text.length > 1){
         Alert.alert('Thank you for messaging in! \n We will respond ASAP', message);
+        this.setState({
+            text: ''
+        })}
+        else {
+            Alert.alert('A conversation is a two\n way street', message);
+        }
     };
 
     render() {
         return (
-            <View>
-                <SafeAreaView>
+            <View style={styles.background}>
                     <ScrollView>
                         <Text/>
                         <Text/>
-                        <Text>Name ...</Text>
-                        <Text>Company Address ...</Text>
-                        <Text>Company Phone ...</Text>
+                        <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Name:</Text> Company name here</Text>
+                        <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Address:</Text> Company address here</Text>
+                        <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Phone:</Text> Company phone number here</Text>
                         <Text/>
                         <Text/>
                         <Text/>
@@ -26,23 +36,25 @@ export class Contact extends Component {
                             style={styles.itemInput}
                             multiline={true}
                             numberOfLines={5}
+                            onChangeText={(text) => this.setState({text})}
+                            value={this.state.text}
                             placeholder={'Please include your email...'}
                         />
-                        <TouchableHighlight
-                            style={styles.button}
-                            underlayColor="grey"
-                            onPress={this.handleSubmit}
-                        >
-                            <Text style={styles.buttonText}>Add</Text>
-                        </TouchableHighlight>
                     </ScrollView>
-                </SafeAreaView>
+                <AwesomeButton width={null} stretch={true} onPress={() => this.handleSubmit()}>Add</AwesomeButton>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    background: {
+        backgroundColor: '#dcddd8'
+    },
+    Text: {
+        paddingLeft: 25,
+        fontSize: 16
+    },
     main: {
         flex: 1,
         padding: 30,

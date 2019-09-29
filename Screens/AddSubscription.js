@@ -106,7 +106,6 @@ export default class AddSubscription extends React.Component {
             navigation.navigate('Main')
         }
     };
-
     render() {
         const { submitted, error } = this.state;
         return (
@@ -115,6 +114,6 @@ export default class AddSubscription extends React.Component {
                 submitted={submitted}
                 onSubmit={this.onSubmit}
             />
-        );
+    );
     }
 }

@@ -4,7 +4,7 @@ import ItemComponent from "../components/ItemComponent";
 import { firebaseApp } from "../Environment/Config";
 import { YellowBox } from "react-native";
 import _ from 'lodash';
-import AwesomeButton from "react-native-really-awesome-button";
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 let itemsRef = firebaseApp.database().ref('/items');
 console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
 
@@ -34,14 +34,13 @@ export default class Main extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <SafeAreaView>
+            <View style={ styles.card2 }>
                     <ScrollView>
                         <ItemComponent items={this.state.items}/>
 
                     </ScrollView>
-                </SafeAreaView>
-                <AwesomeButton style={styles.confirmPurchase} width={null} stretch={true} onPress={() => this.props.navigation.navigate('AddSubscription')}>Confirm Purchase</AwesomeButton>
+                    <AwesomeButton style={styles.confirmPurchase} width={null} stretch={true} onPress={() => this.props.navigation.navigate('AddSubscription')}>Confirm Purchase</AwesomeButton>
+
             </View>
         )
     }
@@ -50,11 +49,13 @@ Main.navigationOptions = {
     header: null,
 };
 const styles = StyleSheet.create({
-    container: {
+    card2: {
+        backgroundColor: '#dcddd8',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
+
     codeHighlightContainer: {
         backgroundColor: 'rgba(0,0,0,0.05)',
         borderRadius: 3,
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
         color: 'rgba(96,100,109, 0.8)',
     },
     confirmPurchase: {
-        bottom: 35
+        paddingTop: 50,
     }
 });
+//        backgroundColor: '#70cdc6',

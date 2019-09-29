@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {StyleSheet, View, Text} from 'react-native';
-import AwesomeButton from "react-native-really-awesome-button";
+import {StyleSheet, View} from 'react-native';
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 
 export default class Cart extends Component{
 
