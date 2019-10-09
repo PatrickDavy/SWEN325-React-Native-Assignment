@@ -3,13 +3,27 @@ import { View, Text, TextInput, Button, StyleSheet, ImageBackground, Image, Dime
 import {firebaseApp} from "../../Environment/Config";
 
 export default class SignUp extends React.Component {
-    state = { email: '', password: '', errorMessage: null };
+
+    state = {
+        email: '',
+        password: '',
+        errorMessage: null
+    };
+
+    /**
+     * If the user credentials do not currently exist then the account will successfully be added
+     */
     handleSignUp = () => {
         console.log('handleSignUp');
         firebaseApp.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
             .then(() => this.props.navigation.navigate('Main'))
             .catch(error => this.setState({ errorMessage: error.message }));
     };
+
+    /**
+     * Displays all information and text inputs to process account submission.
+     * @returns {*}
+     */
     render() {
         return (
                 <View style={styles.container}>

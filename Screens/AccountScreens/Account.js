@@ -1,32 +1,37 @@
 import React from "react";
-import {StyleSheet, View, ScrollView, Text} from 'react-native';
+import {StyleSheet, View, ScrollView, Text, Button} from 'react-native';
 import { firebaseApp } from "../../Environment/Config";
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 
 export class Account extends React.Component {
+    /**
+     * Display switches dependent on who is logged in. The administrator is given a few extra
+     * options to navigate through
+     * @returns { * }
+     */
     adminCheck() {
         if (firebaseApp.auth().currentUser.email === 'assertionexception@gmail.com') {
             return (
                 <ScrollView style={styles.card2 }>
-                <Text/>
-                <Text style={styles.header}>Account Details</Text>
-            <Text/>
-            <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Account Email:</Text> {firebaseApp.auth().currentUser.email}</Text>
-        <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Address:</Text> Personal address here</Text>
-        <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Phone:</Text> Personal phone number here</Text>
-        <Text/>
-        <Text/>
-        <Text/>
-        <View style={styles.button}>
-        <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Admin')}>Admin</AwesomeButton>
-        </View>
-        <View style={styles.button}>
-        <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Main')}>Main</AwesomeButton>
-        </View>
-        <View style={styles.button}>
-        <AwesomeButton width={null} stretch={true} onPress={() => firebaseApp.auth().signOut().then(this.props.navigation.navigate('Login'))}>Sign out</AwesomeButton>
-        </View>
-        </ScrollView>
+                    <Text/>
+                    <Text style={styles.header}>Account Details</Text>
+                    <Text/>
+                    <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Account Email:</Text> {firebaseApp.auth().currentUser.email}</Text>
+                    <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Address:</Text> Personal address here</Text>
+                    <Text style={styles.Text}><Text style={{fontWeight: "bold"}}>Phone:</Text> Personal phone number here</Text>
+                    <Text/>
+                    <Text/>
+                    <Text/>
+                    <View style={styles.button}>
+                        <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Admin')}>Admin</AwesomeButton>
+                    </View>
+                    <View style={styles.button}>
+                        <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Main')}>Main</AwesomeButton>
+                    </View>
+                    <View style={styles.button}>
+                        <AwesomeButton width={null} stretch={true} onPress={() => firebaseApp.auth().signOut().then(this.props.navigation.navigate('Login'))}>Sign out</AwesomeButton>
+                    </View>
+                </ScrollView>
             );
         }
         else {

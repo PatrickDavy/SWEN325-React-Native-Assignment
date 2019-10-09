@@ -32,6 +32,10 @@ export default class Main extends Component {
         });
     }
 
+    /**
+     * calls the Item component to render all firebase entries. and displays a confirm button below all items
+     * @returns {*}
+     */
     render() {
         return (
             <View style={ styles.card2 }>

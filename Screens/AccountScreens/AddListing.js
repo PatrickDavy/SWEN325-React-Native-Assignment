@@ -7,6 +7,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { Kohana } from 'react-native-textinput-effects';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 export default class AddListing extends Component {
     state = {
         Title: ' ',
@@ -18,6 +19,9 @@ export default class AddListing extends Component {
         Type: ' '
     };
 
+    /**
+     * Pushes each field to the database as a new entry
+     */
     addEntry() {
         firebaseApp.database().ref('/items').push({
             Title: this.state.Title,
@@ -30,11 +34,20 @@ export default class AddListing extends Component {
         });
     }
 
+    /**
+     * Prints a message when the database entry has successfully been added
+     * @param title
+     * @param message
+     */
     handleSubmit = (title, message) => {
         this.addEntry();
         Alert.alert('Item saved successfully', message);
     };
 
+    /**
+     * Displays all text inputs and a submission button
+     * @returns {*}
+     */
     render() {
         return (
             <ScrollView style={styles.content}>
@@ -127,9 +140,9 @@ export default class AddListing extends Component {
                 </View>
                 <AwesomeButton width={null} stretch={true} onPress={() => this.handleSubmit()}>Submit</AwesomeButton>
                 <View style={styles.mainButton}>
-                <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Main')}>Main Page</AwesomeButton>
+                    <AwesomeButton width={null} stretch={true} onPress={() => this.props.navigation.navigate('Main')}>Main Page</AwesomeButton>
                 </View>
-                </ScrollView>
+            </ScrollView>
         );
     }
 }

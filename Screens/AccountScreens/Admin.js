@@ -4,7 +4,14 @@ import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import AddListing from "./AddListing";
 import RemoveListing from "./RemoveListing";
 import {firebaseApp} from "../../Environment/Config";
+
 export default class Admin extends Component {
+    /**
+     * This page is only displayed to the account that holds administrative privileges
+     * Render displays buttons that progress through to pages that allow the admin to add
+     * or delete a listing.
+     * @returns {*}
+     */
     render() {
         return (
             <ScrollView style={styles.card2 }>

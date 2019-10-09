@@ -8,6 +8,11 @@ export class Contact extends Component {
         text: ''
     };
 
+    /**
+     * Handles the message submission
+     * @param title
+     * @param message
+     */
     handleSubmit = (title, message) => {
         if(this.state.text.length > 1){
         Alert.alert('Thank you for messaging in! \n We will respond ASAP', message);
@@ -19,6 +24,9 @@ export class Contact extends Component {
         }
     };
 
+    /**
+     * Displays company information for the customer to connect to.
+     */
     render() {
         return (
             <View style={styles.background}>

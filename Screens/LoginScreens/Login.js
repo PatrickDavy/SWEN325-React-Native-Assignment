@@ -3,11 +3,25 @@ import { View, Text, TextInput, Button, StyleSheet, Image, Dimensions, Touchable
 import { firebaseApp } from '../../Environment/Config';
 
 export default class Login extends React.Component {
-    state = { email: '', password: '', errorMessage: null };
+
+    state = {
+        email: '',
+        password: '',
+        errorMessage: null
+    };
+
+    /**
+     * Checks if the credentials are a match and then logins the user in if correct.
+     */
     handleLogin = () => {
         firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(() => this.props.navigation.navigate('Main'))
             .catch(error => this.setState({ errorMessage: error.message }));
     };
+
+    /**
+     * Displays relevant information and text inputs to log the user in
+     * @returns {*}
+     */
     render() {
         return (
                 <View style={styles.container}>

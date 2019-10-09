@@ -17,6 +17,7 @@ import ItemComponent from "./Screens/MainScreens/Component/ItemComponent";
 import AddPayment from "./Screens/PaymentScreens/Component/AddPayment";
 import AddPaymentView from "./Screens/PaymentScreens/AddPaymentView";
 import PaymentFormView from "./Screens/PaymentScreens/Component/PaymentFormView";
+
 /**
  * - AppSwitchNavigator
  *    - WelcomeScreen
@@ -30,7 +31,6 @@ import PaymentFormView from "./Screens/PaymentScreens/Component/PaymentFormView"
  *              - Tab 3 - SettingsStack
  *            - Any files you don't want to be a part of the Tab Navigator can go here.
  */
-
 class App extends Component {
 
     render() {
@@ -40,35 +40,35 @@ class App extends Component {
 }
 
 const TabNavigator = createBottomTabNavigator({
-        Main: {
-            screen: Main,
+    Main: {
+        screen: Main,
+        navigationOptions: {
+            tabBarLabel:"Home",
+            tabBarIcon: ({ tintColor }) => (
+                <FontAwesome name="home" size={30} color="#abd4ed" />
+            )
+        },
+    },
 
-            navigationOptions: {
-                tabBarLabel:"Home",
-                tabBarIcon: ({ tintColor }) => (
-                    <FontAwesome name="home" size={30} color="#abd4ed" />
-                )
-            },
-        },
-        Contact: {
-            screen: Contact,
-            navigationOptions: {
-                tabBarLabel:"Contact",
-                tabBarIcon: ({ tintColor }) => (
-                    <FontAwesome name="users" size={30} color="#abd4ed" />
-                )
-            }
-        },
-        Account: {
-            screen: Account,
-            navigationOptions: {
-                tabBarLabel:"Account",
-                tabBarIcon: ({ tintColor }) => (
-                    <FontAwesome name="user" size={30} color="#abd4ed" />
-                )
-            }
-        },
-    },{
+    Contact: {
+        screen: Contact,
+        navigationOptions: {
+            tabBarLabel:"Contact",
+            tabBarIcon: ({ tintColor }) => (
+                <FontAwesome name="users" size={30} color="#abd4ed" />
+            )
+        }
+    },
+    Account: {
+        screen: Account,
+        navigationOptions: {
+            tabBarLabel:"Account",
+            tabBarIcon: ({ tintColor }) => (
+                <FontAwesome name="user" size={30} color="#abd4ed" />
+            )
+        }
+    }
+},{
 
     order: ['Main', 'Contact', 'Account'],
     tabBarOptions: {
@@ -77,9 +77,8 @@ const TabNavigator = createBottomTabNavigator({
         style: {
             backgroundColor: 'white',
         }
-        },
     },
-    );
+});
 
 const DashboardStackNavigator = createStackNavigator({
     TabNavigator: TabNavigator
@@ -102,9 +101,9 @@ const AppSwitchNavigator = createSwitchNavigator({
     AddListing: AddListing,
     RemoveListing: RemoveListing,
     Admin: Admin,
-    AddSubscriptionView: AddPaymentView,
+    AddPaymentView: AddPaymentView,
     ItemComponent: ItemComponent,
-    AddSubscription: AddPayment,
+    AddPayment: AddPayment,
     PaymentFormView: PaymentFormView,
 },{
     initialRouteName: 'Loading',

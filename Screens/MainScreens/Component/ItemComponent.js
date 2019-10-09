@@ -19,6 +19,10 @@ export default class ItemComponent extends Component {
         console.log("Price:" + this.num)
     }
 
+    /**
+     * Renders to the main page. This retrieves all the information from the database and displays it to the main page
+     * @returns {*}
+     */
     render() {
         return (
             <View style={styles.itemsList}>

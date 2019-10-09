@@ -18,6 +18,9 @@ export default class RemoveListing extends Component {
         Title: ' ',
     };
 
+    /**
+     * Navigates through the database to find the document holding the listings and then removes that item
+     */
     deleteEntry(){
     firebaseApp.database().ref().child('/items').on('value', (snapshot) => {
         snapshot.forEach((child) => {
@@ -34,6 +37,10 @@ export default class RemoveListing extends Component {
     });
     };
 
+    /**
+     * Displays the text input to search for a listing to be removed.
+     * @returns {*}
+     */
     render() {
         return (
             <ScrollView
